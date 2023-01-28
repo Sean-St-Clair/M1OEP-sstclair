@@ -47,3 +47,18 @@ You can include any number and combination of these C++ concepts from Module 1:
 
 All of the above concepts that you design, create, and use in your main program must be clearly listed
 in your README.md file.
+
+## Project Brainstorming:
+
+Class concepts:
+- Class (very likely)
+- Overloaded operators - doable, can do a contest of damage or something(?)
+  - Can also do == to check that it's not colliding with self (or something like that)
+- Enumerated type - cool, maybe we could do like an entity ID system, like friend or foe
+- Structs - hmm going to do some cursory research on this one sec
+
+Maybe the class is called "entity handler" and it contains an entity struct (with some basic values)
+- Then the methods actually perform the thing. Like you can link an "update" method into them.
+- This architecture seems kinda weird and not actually good for a scalable game tho, so. We'll see. (like it's reminiscent of a component-based system but I'm not sure if I wanna dive into that just yet)
+- Maybe even just when collisions are resolved there's a "combat info" struct. maybe? like with physics info, ID, damage values, etc.
+
