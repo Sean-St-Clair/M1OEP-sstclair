@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
-project(Style-Me)
+project(Dungeon-Builder)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Style-Me main.cpp)
+add_executable(Dungeon-Builder main.cpp)
