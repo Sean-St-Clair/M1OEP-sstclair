@@ -51,14 +51,31 @@ in your README.md file.
 ## Project Brainstorming:
 
 Class concepts:
-- Class (very likely)
-- Overloaded operators - doable, can do a contest of damage or something(?)
-  - Can also do == to check that it's not colliding with self (or something like that)
-- Enumerated type - cool, maybe we could do like an entity ID system, like friend or foe
-- Structs - hmm going to do some cursory research on this one sec
+-Class (very likely)
+-Overloaded operators - doable, can do a contest of damage or something(?)
+    -Can also do == to check that it's not colliding with self (or something like that)
+-Enumerated type - cool, maybe we could do like an entity ID system, like friend or foe 
+-Structs - hmm going to do some cursory research on this one sec
 
 Maybe the class is called "entity handler" and it contains an entity struct (with some basic values)
-- Then the methods actually perform the thing. Like you can link an "update" method into them.
-- This architecture seems kinda weird and not actually good for a scalable game tho, so. We'll see. (like it's reminiscent of a component-based system but I'm not sure if I wanna dive into that just yet)
-- Maybe even just when collisions are resolved there's a "combat info" struct. maybe? like with physics info, ID, damage values, etc.
+-Then the methods actually perform the thing. Like you can link an "update" method into them.
+-This architecture seems kinda weird and not actually good for a scalable game tho, so. We'll see. (like it's reminiscent of a component-based system but I'm not sure if I wanna dive into that just yet)
+-Maybe even just when collisions are resolved there's a "combat info" struct. maybe? like with physics info, ID, damage values, etc.
 
+I could also consider foregoing graphics for now, and leaving that for future development. Yeah, I like this as a text-based thing.
+-Perhaps the "struct" is for the room - the description as it is printed out, and optionals for north, east, south, west directions. (pointers to other rooms)
+-There will be functions for adding rooms onto specific directions, which adds bi-directional pointers to both
+-Yeah, that could be cool. This is a basic text-based dungeon navigation system (a useful proof-of-concept)
+-It asks for input about the new room and where you wanna add it, then at the end it prints it out cuz that'd be cool? (like some ascii art of the dungeon layout - a 2D grid of equally-sized cells for now)
+    -And the use of overloaded operators is so it detects ur not trying to link 1 room to itself, for instance
+        -"Error: cannot place a room to the left of itself!" or something haha.
+
+Ok cool. You could also optionally just create a new room and then link it (hallways / nodes / connections / whatever are created automatically; otherwise assumed to be a blank wall)
+-There could also be a simple "copy" function. So you could be like... "rest room" and scatter copies around the dungeon (wait not like a bathroom a room for... rest?? lol)
+-And you could be like copy rest_room rest_room2 (the name has to be unique) and it gives the copies all the values of the original but stores it elsewhere in memory (I want to do this instead of just having a shared pointer because I may want to then make unique edits to the copy)
+-And then you could do link rest_room east rest_room2
+    -Oh no it's turning into a little scripting language haha.
+    -Honestly input parsing is gonna be the most challenging part of this
+    -I should probably do the input validation thing first tbh! Isn't that the AP?
+-Also maybe in the future there could be specifications for room dimensions and special editing of tiles within those rooms.
+-And eventually even switching to a graphics version of this dungeon generator. Could be cool.
