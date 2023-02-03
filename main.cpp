@@ -67,11 +67,11 @@ void printDungeon() {
     int dungeonWidth = 5;
     int dungeonHeight = 3;
     // A default room for testing
-    string defaultRoom = "----------"
-                         "\n|   1    |"
-                         "\n|   2    |"
-                         "\n|   3    |"
-                         "\n----------";
+    string defaultRoom = "---| |----"
+                         "\n|        |"
+                         "\n|        |"
+                         "\n|        |"
+                         "\n---| |----";
     // Split the room string by its newline characters in order to print several side-by-side.
     vector<string> split = splitString(defaultRoom, '\n');
 
