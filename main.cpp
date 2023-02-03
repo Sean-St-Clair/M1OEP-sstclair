@@ -5,6 +5,11 @@
 using namespace std;
 
 /*
+ * Prompts the user for input to create a room and specify its dimensions
+ */
+void createRoom();
+
+/*
  * "Links" the two rooms by placing room2 next to room1 in accordance with the given direction
  */
 void linkRooms(DungeonRoom &room1, DungeonRoom &room2, int direction);
@@ -32,23 +37,32 @@ int main() {
                     "\n[4] - Quit";
     int response = 0;
     int numRooms = 0;
-    int roomWidth, roomHeight;
     while (response != 4) {
         cout << prompt << endl;
         cin >> response;
         // Testing
         cout << response << endl;
-        if (response == 4)
-            break;
-        if (numRooms == 0)
-            cout << "Creating your first room!" << endl;
-        cout << "Please enter an integer for the room width." << endl;
-        cin >> roomWidth;
-        cout << "Please enter an integer for the room height." << endl;
-        cin >> roomHeight;
-        cout << "Your room's dimensions are " << roomWidth << " x " << roomHeight << "." << endl;
-        numRooms++;
-        cout << "There are now " << numRooms << " rooms." << endl;
+        switch (response) {
+            case 1:
+                if (numRooms == 0)
+                    cout << "Creating your first room!" << endl;
+                createRoom();
+                numRooms++;
+                cout << "There are now " << numRooms << " rooms." << endl;
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            default:
+
+                break;
+        }
     }
     cout << "Thank you for using Dungeon Builder! Your finished dungeon: " << endl;
     // Prints an ascii visual of the finished dungeon
@@ -56,6 +70,14 @@ int main() {
     return 0;
 }
 
+void createRoom() {
+    int roomWidth, roomHeight;
+    cout << "Please enter an integer for the room width." << endl;
+    cin >> roomWidth;
+    cout << "Please enter an integer for the room height." << endl;
+    cin >> roomHeight;
+    cout << "Your room's dimensions are " << roomWidth << " x " << roomHeight << "." << endl;
+}
 
 void linkRooms(DungeonRoom &room1, DungeonRoom &room2, int direction) {
     /*
