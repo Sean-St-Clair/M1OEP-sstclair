@@ -6,6 +6,7 @@
 #define DUNGEON_BUILDER_DUNGEONROOM_H
 
 // TODO: more meaningful comments for methods and fields
+// TODO: split methods into .cpp file
 class DungeonRoom {
 private:
     int roomWidth;
@@ -23,57 +24,32 @@ public:
     /*
      * Getters
      */
-    int getRoomWidth() {
-        return roomWidth;
-    }
+    int getRoomWidth();
 
-    int getRoomHeight() {
-        return roomHeight;
-    }
+    int getRoomHeight();
 
-    DungeonRoom *getNorthRoom() {
-        return northRoom;
-    }
+    DungeonRoom *getNorthRoom();
 
-    DungeonRoom *getEastRoom() {
-        return eastRoom;
-    }
+    DungeonRoom *getEastRoom();
 
-    DungeonRoom *getSouthRoom() {
-        return southRoom;
-    }
+    DungeonRoom *getSouthRoom();
 
-    DungeonRoom *getWestRoom() {
-        return westRoom;
-    }
+    DungeonRoom *getWestRoom();
 
     /*
      * Setters
      */
-    void setRoomWidth(int roomWidth) {
-        this->roomWidth = roomWidth;
-    }
+    void setRoomWidth(int roomWidth);
 
-    void setRoomHeight(int roomHeight) {
-        this->roomHeight = roomHeight;
-    }
+    void setRoomHeight(int roomHeight);
 
-    // TODO: Make sure the pointer syntax is actually correct
-    void setNorthRoom(DungeonRoom &northRoom) {
-        this->northRoom = &northRoom;
-    }
+    void setNorthRoom(DungeonRoom &northRoom);
 
-    void setEastRoom(DungeonRoom &eastRoom) {
-        this->eastRoom = &eastRoom;
-    }
+    void setEastRoom(DungeonRoom &eastRoom);
 
-    void setSouthRoom(DungeonRoom &southRoom) {
-        this->southRoom = &southRoom;
-    }
+    void setSouthRoom(DungeonRoom &southRoom);
 
-    void setWestRoom(DungeonRoom &westRoom) {
-        this->westRoom = &westRoom;
-    }
+    void setWestRoom(DungeonRoom &westRoom);
 
 };
 
