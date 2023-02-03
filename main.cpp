@@ -66,20 +66,23 @@ vector<string> splitString(string input, char delimiter) {
 void printDungeon() {
     int dungeonWidth = 5;
     int dungeonHeight = 3;
-    string room = "----------"
-                  "\n|   1    |"
-                  "\n|   2    |"
-                  "\n|   3    |"
-                  "\n----------";
-    vector<string> split = splitString(room, '\n');
-    for (string segment: split) {
-        cout << segment << endl;
-    }
+    // A default room for testing
+    string defaultRoom = "----------"
+                         "\n|   1    |"
+                         "\n|   2    |"
+                         "\n|   3    |"
+                         "\n----------";
+    // Split the room string by its newline characters in order to print several side-by-side.
+    vector<string> split = splitString(defaultRoom, '\n');
+
     // Print several rows of rooms on top of each other
     for (int i = 0; i < dungeonHeight; i++) {
         // Print several rooms next to each other in a single row
-        for (int e = 0; e < dungeonWidth; e++) {
-            // Split the room string by its newline characters in order to print several side-by-side.
+        for (string segment: split) {
+            for (int e = 0; e < dungeonWidth; e++) {
+                cout << segment;
+            }
+            cout << endl;
         }
     }
 }
