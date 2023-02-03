@@ -1,7 +1,13 @@
 #include <iostream>
 #include <vector>
+#include "dungeonRoom.h"
 
 using namespace std;
+
+/*
+ * "Links" the two rooms by placing room2 next to room1 in accordance with the given direction
+ */
+void linkRooms(DungeonRoom &room1, DungeonRoom &room2, int direction);
 
 /*
  * Takes a string and returns a vector of substrings split by the given delimiter
@@ -14,7 +20,8 @@ vector<string> splitString(string input, char delimiter);
 void printDungeon();
 
 // Testing some basic functionality without yet doing input validation
-// (Will do input validation once we are more sure of the structure of the program / input scheme)
+// TODO: input validation once we are more sure of the structure of the program / input scheme
+// TODO: restrict the room dimensions to fall within a maximum cell size on grid space
 int main() {
     cout << "Welcome to Dungeon Builder! ";
 
@@ -44,10 +51,18 @@ int main() {
         cout << "There are now " << numRooms << " rooms." << endl;
     }
     cout << "Thank you for using Dungeon Builder! Your finished dungeon: " << endl;
+    // Prints an ascii visual of the finished dungeon
     printDungeon();
-    // Print out an ascii visual of the dungeon
-    // Will limit the dimensions of the rooms so all prints out accordingly.
     return 0;
+}
+
+
+void linkRooms(DungeonRoom &room1, DungeonRoom &room2, int direction) {
+    /*
+     * TODO: Link rooms should update pointers for both rooms to point to one another.
+     * If room 1 and 2 were side-by-side, room 1 should point to room 2 on its east pointer,
+     * And room 2 should point to room 1 on its west pointer.
+    */
 }
 
 vector<string> splitString(string input, char delimiter) {
@@ -64,8 +79,6 @@ vector<string> splitString(string input, char delimiter) {
 }
 
 void printDungeon() {
-    int dungeonWidth = 5;
-    int dungeonHeight = 3;
     // A default room for testing
     string defaultRoom = "----------"
                          "\n|        |"
@@ -75,6 +88,9 @@ void printDungeon() {
     // Split the room string by its newline characters in order to print several side-by-side.
     vector<string> split = splitString(defaultRoom, '\n');
 
+    // Testing variables - will likely be user-specified
+    int dungeonWidth = 5;
+    int dungeonHeight = 3;
     // Print several rows of rooms on top of each other
     for (int i = 0; i < dungeonHeight; i++) {
         // Print several rooms next to each other in a single row

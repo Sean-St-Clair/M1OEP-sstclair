@@ -3,4 +3,4 @@ project(Dungeon-Builder)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Dungeon-Builder main.cpp)
+add_executable(Dungeon-Builder main.cpp dungeonRoom.cpp dungeonRoom.h)
