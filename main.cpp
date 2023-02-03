@@ -53,9 +53,9 @@ int main() {
 vector<string> splitString(string input, char delimiter) {
     vector<string> splitVector;
     int startIndex = 0;
-    for (int i = 0; i < input.size(); i++) {
+    for (int i = 0; i <= input.size(); i++) {
         if (input[i] == delimiter || i == input.size()) {
-            string subString = input.substr(startIndex, i);
+            string subString = input.substr(startIndex, i - startIndex);
             splitVector.push_back(subString);
             startIndex = i + 1;
         }
@@ -67,14 +67,14 @@ void printDungeon() {
     int dungeonWidth = 5;
     int dungeonHeight = 3;
     string room = "----------"
-                  "\n|        |"
-                  "\n|        |"
-                  "\n|        |"
+                  "\n|   1    |"
+                  "\n|   2    |"
+                  "\n|   3    |"
                   "\n----------";
     vector<string> split = splitString(room, '\n');
-    cout << split.size();
-    for (string test: split)
-        cout << test << endl;
+    for (string segment: split) {
+        cout << segment << endl;
+    }
     // Print several rows of rooms on top of each other
     for (int i = 0; i < dungeonHeight; i++) {
         // Print several rooms next to each other in a single row
