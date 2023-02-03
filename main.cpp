@@ -69,7 +69,7 @@ void printDungeon() {
     // A default room for testing
     string defaultRoom = "---| |----"
                          "\n|        |"
-                         "\n|        |"
+                         "\n-        -"
                          "\n|        |"
                          "\n---| |----";
     // Split the room string by its newline characters in order to print several side-by-side.
