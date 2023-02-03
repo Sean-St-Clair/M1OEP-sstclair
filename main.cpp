@@ -10,6 +10,11 @@ using namespace std;
 void createRoom();
 
 /*
+ * Takes the given dungeon and returns a copy of it (having the same fields but its own space in memory)
+ */
+DungeonRoom copyRoom();
+
+/*
  * "Links" the two rooms by placing room2 next to room1 in accordance with the given direction
  */
 void linkRooms(DungeonRoom &room1, DungeonRoom &room2, int direction);
@@ -51,16 +56,16 @@ int main() {
                 cout << "There are now " << numRooms << " rooms." << endl;
                 break;
             case 2:
-
+                copyRoom();
+                numRooms++;
+                cout << "There are now " << numRooms << " rooms." << endl;
+                // TODO: dedicated "add rooms" function
                 break;
             case 3:
-
-                break;
-            case 4:
-
+                cout << "Linking rooms!";
                 break;
             default:
-
+                cout << "Invalid input. Enter 1-4" << endl;
                 break;
         }
     }
@@ -79,12 +84,23 @@ void createRoom() {
     cout << "Your room's dimensions are " << roomWidth << " x " << roomHeight << "." << endl;
 }
 
+DungeonRoom copyRoom() {
+    /*
+     * TODO: Copy room functionality:
+     * 1.) Create a default constructor that properly sets default values
+     * 2.) Create a constructor taking just dimensions as arguments
+     * 3.) Create a constructor taking another DungeonRoom as an argument (I guess a copy constructor)
+     */
+    cout << "Copying room!" << endl;
+}
+
 void linkRooms(DungeonRoom &room1, DungeonRoom &room2, int direction) {
     /*
      * TODO: Link rooms should update pointers for both rooms to point to one another.
      * If room 1 and 2 were side-by-side, room 1 should point to room 2 on its east pointer,
      * And room 2 should point to room 1 on its west pointer.
     */
+    cout << "Linking rooms!" << endl;
 }
 
 vector<string> splitString(string input, char delimiter) {
