@@ -172,6 +172,7 @@ DungeonRoom createRoom(vector<DungeonRoom> &dungeon) {
             break;
         default:
             cout << "Invalid response: " << response << endl;
+            roomSize = LARGE;
             break;
     }
 
@@ -191,7 +192,7 @@ DungeonRoom createRoom(vector<DungeonRoom> &dungeon) {
             detail
     };
 
-    // TODO create room
+    room = DungeonRoom(name, roomSize, renderInfo);
     cout << "Room " << name << " is complete!" << endl;
     return room;
 }

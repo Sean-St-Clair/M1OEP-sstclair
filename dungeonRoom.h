@@ -29,19 +29,24 @@ class DungeonRoom {
 private:
     string name;
     dungeonRoomSize roomSize;
+    renderInformation renderInfo;
     DungeonRoom *northRoom;
     DungeonRoom *eastRoom;
     DungeonRoom *southRoom;
     DungeonRoom *westRoom;
-    renderInformation renderInfo;
 public:
     // Default Constructor
     DungeonRoom();
+
+    // Detailed Constructor
+    DungeonRoom(string name, dungeonRoomSize roomSize, renderInformation renderInfo);
 
     // Getters
     string getName();
 
     dungeonRoomSize getRoomSize();
+
+    renderInformation getRenderInfo();
 
     DungeonRoom *getNorthRoom();
 
@@ -51,12 +56,12 @@ public:
 
     DungeonRoom *getWestRoom();
 
-    renderInformation getRenderInfo();
-
     // Setters
     void setName(string name);
 
     void setRoomSize(dungeonRoomSize roomSize);
+
+    void setRenderInfo(renderInformation renderInfo);
 
     void setNorthRoom(DungeonRoom *northRoom);
 
@@ -65,8 +70,6 @@ public:
     void setSouthRoom(DungeonRoom *southRoom);
 
     void setWestRoom(DungeonRoom *westRoom);
-
-    void setRenderInfo(renderInformation renderInfo);
 
     // Unique methods
     // TODO: use values from struct

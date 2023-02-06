@@ -8,12 +8,22 @@ DungeonRoom::DungeonRoom() {
 
 }
 
+DungeonRoom::DungeonRoom(string name, dungeonRoomSize roomSize, renderInformation renderInfo) {
+    this->name = name;
+    this->roomSize = roomSize;
+    this->renderInfo = renderInfo;
+}
+
 string DungeonRoom::getName() {
     return name;
 }
 
 dungeonRoomSize DungeonRoom::getRoomSize() {
     return roomSize;
+}
+
+renderInformation DungeonRoom::getRenderInfo() {
+    return renderInfo;
 }
 
 DungeonRoom *DungeonRoom::getNorthRoom() {
@@ -32,16 +42,16 @@ DungeonRoom *DungeonRoom::getWestRoom() {
     return westRoom;
 }
 
-renderInformation DungeonRoom::getRenderInfo() {
-    return renderInfo;
-}
-
 void DungeonRoom::setName(std::string name) {
     this->name = name;
 }
 
 void DungeonRoom::setRoomSize(dungeonRoomSize roomSize) {
     this->roomSize = roomSize;
+}
+
+void DungeonRoom::setRenderInfo(renderInformation renderInfo) {
+    this->renderInfo = renderInfo;
 }
 
 void DungeonRoom::setNorthRoom(DungeonRoom *northRoom) {
@@ -58,8 +68,4 @@ void DungeonRoom::setSouthRoom(DungeonRoom *southRoom) {
 
 void DungeonRoom::setWestRoom(DungeonRoom *westRoom) {
     this->westRoom = westRoom;
-}
-
-void DungeonRoom::setRenderInfo(renderInformation renderInfo) {
-    this->renderInfo = renderInfo;
 }
