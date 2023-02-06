@@ -115,3 +115,10 @@ More brainstorming:
 
 - User might want to customize the size of the dungeon
 - User may want to see the dungeons actually laid out in the grid in accordance with their linking
+
+## Notes about submission:
+
+- I'm not sure why I ran into an error while recording! I tested it immediately after with no changes, and didn't repeat
+  the error.
+- This doesn't mean that the function works as expected all of the time, but this is an unfortunate part of developing
+  this feature so close to the deadline.
