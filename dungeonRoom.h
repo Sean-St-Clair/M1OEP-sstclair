@@ -79,14 +79,34 @@ public:
     // This method uses characters from the render info struct to generate a string
     // that represents the ascii visual of this room.
     string generateRoomVisuals() {
-        string defaultRoom = "--------------"
-                             "\n|            |"
-                             "\n|            |"
-                             "\n|            |"
-                             "\n|            |"
-                             "\n|            |"
-                             "\n--------------";
-        return defaultRoom;
+        int roomWidth = 14;
+        int roomHeight = 7;
+        switch (roomSize) {
+            case SMALL:
+                roomWidth -= 6;
+                roomHeight -= 4;
+                break;
+            case MEDIUM:
+                roomWidth -= 4;
+                roomHeight -= 2;
+                break;
+            case LARGE:
+                break;
+        }
+        string roomVisuals;
+        for (int i = 0; i < roomHeight; i++) {
+            for (int e = 0; e < roomWidth; e++) {
+                if (i == 0 || i == roomHeight - 1)
+                    roomVisuals += renderInfo.ceiling;
+                else {
+                    if (e == 0 || e == roomWidth - 1)
+                        roomVisuals += renderInfo.wall;
+                    else roomVisuals += renderInfo.floor;
+                }
+            }
+            roomVisuals += "\n";
+        }
+        return roomVisuals;
     }
 
 };

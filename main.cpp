@@ -21,22 +21,26 @@ string getWordFromUser(string prompt);
 // This function prompts a user for input until a valid single character is entered
 char getCharFromUser(string prompt);
 
-// Prompts the user for input to create a room and adds it to the dungeon vector
+// Prompts the user for input to create a room and displays it in the console
 DungeonRoom createRoom(vector<DungeonRoom> &dungeon);
 
-// Takes two DungeonRoom objects and "links" them together, by having pointers set to face each other
-void linkRooms(DungeonRoom &room1, DungeonRoom &room2, direction dir);
+// Prompts the user to select two rooms to "link" together so that each room will have pointers to each other
+void linkRooms(vector<DungeonRoom> &dungeon);
 
 // Takes a string and returns a vector of substrings split by the given delimiter
 vector<string> splitString(string input, char delimiter);
 
+// Prints out a list of all the rooms, with added numbers
+void printRooms(vector<DungeonRoom> &dungeon);
+
 // Prints an ascii visual of the created dungeon.
-void printDungeon(vector<DungeonRoom>);
+void displayDungeon(vector<DungeonRoom> &dungeon, int dungeonRowWidth);
 
 // Testing some basic functionality without yet doing input validation
 int main() {
     // This vector represents the rooms in the dungeon, which will be split into rows by the renderer
     vector<DungeonRoom> dungeon;
+    int dungeonRowWidth = 6;
 
     // Prompts the user to select from the builder menu
     cout << "Welcome to Dungeon Builder!";
@@ -48,26 +52,26 @@ int main() {
     int response = -1;
 
     // Handles each case with a separate function
-    DungeonRoom room1, room2;
-    room1 = DungeonRoom();
-    room2 = DungeonRoom();
     while (response != 4) {
         response = getIntFromUser(prompt, 4);
         switch (response) {
             case 1:
                 dungeon.push_back(createRoom(dungeon));
+                printRooms(dungeon);
                 break;
             case 2:
-                linkRooms(room1, room2, NORTH);
+                if (dungeon.size() >= 2) {
+                    linkRooms(dungeon);
+                } else cout << "At least 2 rooms must exist before linking!" << endl;
                 break;
             case 3:
-                printDungeon(dungeon);
+                displayDungeon(dungeon, dungeonRowWidth);
                 break;
         }
     }
     cout << "Thank you for using Dungeon Builder! Your finished dungeon: " << endl;
     // Prints an ascii visual of the finished dungeon
-    printDungeon(dungeon);
+    displayDungeon(dungeon, dungeonRowWidth);
     return 0;
 }
 
@@ -194,16 +198,50 @@ DungeonRoom createRoom(vector<DungeonRoom> &dungeon) {
 
     room = DungeonRoom(name, roomSize, renderInfo);
     cout << "Room " << name << " is complete!" << endl;
+    cout << room.generateRoomVisuals() << endl;
     return room;
 }
 
-void linkRooms(DungeonRoom &room1, DungeonRoom &room2, direction dir) {
-    /*
-     * TODO: Link rooms should update pointers for both rooms to point to one another.
-     * If room 1 and 2 were side-by-side, room 1 should point to room 2 on its east pointer,
-     * And room 2 should point to room 1 on its west pointer.
-    */
-    cout << "Linking rooms!" << endl;
+void linkRooms(vector<DungeonRoom> &dungeon) {
+    printRooms(dungeon);
+    string prompt = "Enter the number of the first room to link.\n";
+    int room1Index = getIntFromUser(prompt, dungeon.size());
+    prompt = "Enter the number of the second room to link.\n";
+    int room2Index = getIntFromUser(prompt, dungeon.size());
+    prompt = "Where will the second room be placed with respect to the first?"
+             "\n[1] - North"
+             "\n[2] - East"
+             "\n[3] - South"
+             "\n[4] - West\n";
+    int direction = getIntFromUser(prompt, 4);
+
+    DungeonRoom *room1Ptr = &dungeon[room1Index];
+    DungeonRoom *room2Ptr = &dungeon[room2Index];
+    switch (direction) {
+        case 1:
+            // North
+            dungeon[room1Index].setNorthRoom(room2Ptr);
+            dungeon[room2Index].setSouthRoom(room1Ptr);
+            break;
+        case 2:
+            // East
+            dungeon[room1Index].setEastRoom(room2Ptr);
+            dungeon[room2Index].setWestRoom(room1Ptr);
+        case 3:
+            // South
+            dungeon[room1Index].setSouthRoom(room2Ptr);
+            dungeon[room2Index].setNorthRoom(room1Ptr);
+            break;
+        case 4:
+            // West
+            dungeon[room1Index].setWestRoom(room2Ptr);
+            dungeon[room2Index].setEastRoom(room1Ptr);
+            break;
+        default:
+            cout << "Unexpected direction: " << direction << endl;
+            break;
+    }
+    cout << "Linking complete!" << endl;
 }
 
 vector<string> splitString(string input, char delimiter) {
@@ -219,7 +257,17 @@ vector<string> splitString(string input, char delimiter) {
     return splitVector;
 }
 
-void printDungeon(vector<DungeonRoom> dungeon) {
+void printRooms(vector<DungeonRoom> &dungeon) {
+    cout << "Current rooms: ";
+    for (int i = 0; i < dungeon.size(); i++) {
+        cout << "[" << (i + 1) << "]" << dungeon[i].getName();
+        if (i < dungeon.size() - 1)
+            cout << ", ";
+    }
+    cout << endl;
+}
+
+void displayDungeon(vector<DungeonRoom> &dungeon, int dungeonRowWidth) {
     // A default room for testing
     string defaultRoom = "--------------"
                          "\n|            |"
@@ -244,4 +292,7 @@ void printDungeon(vector<DungeonRoom> dungeon) {
             cout << endl;
         }
     }
+
+    for (DungeonRoom room: dungeon)
+        cout << room.generateRoomVisuals() << endl;
 }
