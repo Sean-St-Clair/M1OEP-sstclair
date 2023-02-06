@@ -5,28 +5,37 @@
 #ifndef DUNGEON_BUILDER_DUNGEONROOM_H
 #define DUNGEON_BUILDER_DUNGEONROOM_H
 
-// TODO: more meaningful comments for methods and fields
-// TODO: split methods into .cpp file
+#include <string>
+#include <vector>
+
+using namespace std;
+
+enum dungeonRoomSize {
+    SMALL, MEDIUM, LARGE
+};
+
 class DungeonRoom {
 private:
-    int roomWidth;
-    int roomHeight;
+    string name;
+    dungeonRoomSize roomSize;
     DungeonRoom *northRoom;
     DungeonRoom *eastRoom;
     DungeonRoom *southRoom;
     DungeonRoom *westRoom;
+    struct {
+        char wall;
+        char ceiling;
+        char floor;
+        char detail;
+    } renderInfo;
 public:
-    /*
-     * Default constructor
-     */
+    // Default Constructor
     DungeonRoom();
 
-    /*
-     * Getters
-     */
-    int getRoomWidth();
+    // Getters
+    string getName();
 
-    int getRoomHeight();
+    dungeonRoomSize getRoomSize();
 
     DungeonRoom *getNorthRoom();
 
@@ -36,20 +45,29 @@ public:
 
     DungeonRoom *getWestRoom();
 
-    /*
-     * Setters
-     */
-    void setRoomWidth(int roomWidth);
+    // Setters
+    void setName(string name);
 
-    void setRoomHeight(int roomHeight);
+    void setRoomSize(dungeonRoomSize roomSize);
 
-    void setNorthRoom(DungeonRoom &northRoom);
+    void setNorthRoom(DungeonRoom *northRoom);
 
-    void setEastRoom(DungeonRoom &eastRoom);
+    void setEastRoom(DungeonRoom *eastRoom);
 
-    void setSouthRoom(DungeonRoom &southRoom);
+    void setSouthRoom(DungeonRoom *southRoom);
 
-    void setWestRoom(DungeonRoom &westRoom);
+    void setWestRoom(DungeonRoom *westRoom);
+
+    // Unique methods
+    // TODO: use values from struct
+    string generateRoomVisuals() {
+        string defaultRoom = "----------"
+                             "\n|        |"
+                             "\n|        |"
+                             "\n|        |"
+                             "\n----------";
+        return defaultRoom;
+    }
 
 };
 

@@ -93,3 +93,16 @@ are created automatically; otherwise assumed to be a blank wall)
 - Also, maybe in the future there could be specifications for room dimensions and special editing of tiles within those
   rooms.
 - And eventually even switching to a graphics version of this dungeon generator. Could be cool.
+
+More brainstorming:
+
+- Structs for room display: wall character, floor character, detail character, detail 2 (the last 2 maybe being
+  optionals?)
+- Dungeon class, for managing rooms and linking them? Rather than a "copy" function. Just add all starting room types,
+  then add these to dungeon. Hmmm... Need to remember scope of the project though
+- Maybe just a dungeon renderer class, that adds a room of given dimensions alongside the rendering struct to the visual
+  map.
+- Maybe each room will have a field for its rendering struct
+- Rather than room size maybe we should just specify the dungeon coordinates. And then maybe size = small, medium
+  large... Hmmm. We need to define the actual input loop more clearly. Room size with specific categories like that
+  would make sense for an enum.
