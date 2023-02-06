@@ -32,6 +32,10 @@ DungeonRoom *DungeonRoom::getWestRoom() {
     return westRoom;
 }
 
+renderInformation DungeonRoom::getRenderInfo() {
+    return renderInfo;
+}
+
 void DungeonRoom::setName(std::string name) {
     this->name = name;
 }
@@ -54,4 +58,8 @@ void DungeonRoom::setSouthRoom(DungeonRoom *southRoom) {
 
 void DungeonRoom::setWestRoom(DungeonRoom *westRoom) {
     this->westRoom = westRoom;
+}
+
+void DungeonRoom::setRenderInfo(renderInformation renderInfo) {
+    this->renderInfo = renderInfo;
 }

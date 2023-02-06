@@ -18,6 +18,13 @@ enum direction {
     NORTH, EAST, SOUTH, WEST
 };
 
+struct renderInformation {
+    char wall;
+    char ceiling;
+    char floor;
+    char detail;
+};
+
 class DungeonRoom {
 private:
     string name;
@@ -26,12 +33,7 @@ private:
     DungeonRoom *eastRoom;
     DungeonRoom *southRoom;
     DungeonRoom *westRoom;
-    struct {
-        char wall;
-        char ceiling;
-        char floor;
-        char detail;
-    } renderInfo;
+    renderInformation renderInfo;
 public:
     // Default Constructor
     DungeonRoom();
@@ -49,6 +51,8 @@ public:
 
     DungeonRoom *getWestRoom();
 
+    renderInformation getRenderInfo();
+
     // Setters
     void setName(string name);
 
@@ -61,6 +65,8 @@ public:
     void setSouthRoom(DungeonRoom *southRoom);
 
     void setWestRoom(DungeonRoom *westRoom);
+
+    void setRenderInfo(renderInformation renderInfo);
 
     // Unique methods
     // TODO: use values from struct

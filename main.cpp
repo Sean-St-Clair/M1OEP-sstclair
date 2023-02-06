@@ -7,6 +7,7 @@ using namespace std;
 
 // TODO: User may want to customize the size of the dungeon
 // TODO: add some more comments (minimize all to check for consistency)
+// TODO: add dungeon coordinates system
 
 // This function takes a string and returns true if and only if it contains any whitespace characters
 bool stringContainsSpace(string input);
@@ -17,8 +18,11 @@ int getIntFromUser(string prompt, int range);
 // This function prompts a user for input until a valid word is entered
 string getWordFromUser(string prompt);
 
+// This function prompts a user for input until a valid single character is entered
+char getCharFromUser(string prompt);
+
 // Prompts the user for input to create a room and adds it to the dungeon vector
-void createRoom(vector<DungeonRoom> &dungeon);
+DungeonRoom createRoom(vector<DungeonRoom> &dungeon);
 
 // Takes two DungeonRoom objects and "links" them together, by having pointers set to face each other
 void linkRooms(DungeonRoom &room1, DungeonRoom &room2, direction dir);
@@ -51,7 +55,7 @@ int main() {
         response = getIntFromUser(prompt, 4);
         switch (response) {
             case 1:
-                createRoom(dungeon);
+                dungeon.push_back(createRoom(dungeon));
                 break;
             case 2:
                 linkRooms(room1, room2, NORTH);
@@ -125,10 +129,71 @@ string getWordFromUser(string prompt) {
     return input;
 }
 
-void createRoom(vector<DungeonRoom> &dungeon) {
+char getCharFromUser(string prompt) {
+    string input;
+    cout << prompt;
+    getline(cin, input);
+
+    // Re-prompts user for input if more or less than 1 character is entered
+    while (input.length() != 1) {
+        if (input.length() < 1)
+            cout << "No input. ";
+        else cout << "Invalid input. ";
+        cout << prompt;
+        getline(cin, input);
+    }
+    return input[0];
+}
+
+DungeonRoom createRoom(vector<DungeonRoom> &dungeon) {
+    DungeonRoom room;
     cout << "Creating room!" << endl;
+
+    // Prompts the user for the room name
     string prompt = "What is the name of this room?\n";
-    string response = getWordFromUser(prompt);
+    string name = getWordFromUser(prompt);
+
+    // Prompts the user for the size and matches it to a dungeonRoomSize enum
+    prompt = "What is the size of this room?"
+             "\n[1] - Small"
+             "\n[2] - Medium"
+             "\n[3] - Large\n";
+    int response = getIntFromUser(prompt, 3);
+    dungeonRoomSize roomSize;
+    switch (response) {
+        case 1:
+            roomSize = SMALL;
+            break;
+        case 2:
+            roomSize = MEDIUM;
+            break;
+        case 3:
+            roomSize = LARGE;
+            break;
+        default:
+            cout << "Invalid response: " << response << endl;
+            break;
+    }
+
+    // Asks the user to enter visual rendering information for the room
+    prompt = "What character will the room use for the wall?\n";
+    char wall = getCharFromUser(prompt);
+    prompt = "What character will the room use for the ceiling?\n";
+    char ceiling = getCharFromUser(prompt);
+    prompt = "What character will the room use for the floor? (whitespace is ok)\n";
+    char floor = getCharFromUser(prompt);
+    prompt = "What character will the room use for added detail?\n";
+    char detail = getCharFromUser(prompt);
+    renderInformation renderInfo{
+            wall,
+            ceiling,
+            floor,
+            detail
+    };
+
+    // TODO create room
+    cout << "Room " << name << " is complete!" << endl;
+    return room;
 }
 
 void linkRooms(DungeonRoom &room1, DungeonRoom &room2, direction dir) {
