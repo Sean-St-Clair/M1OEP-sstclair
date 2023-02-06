@@ -5,10 +5,6 @@
 
 using namespace std;
 
-// TODO: User may want to customize the size of the dungeon
-// TODO: add some more comments (minimize all to check for consistency)
-// TODO: add dungeon coordinates system
-
 // This function takes a string and returns true if and only if it contains any whitespace characters
 bool stringContainsSpace(string input);
 

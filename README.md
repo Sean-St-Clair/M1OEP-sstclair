@@ -110,3 +110,8 @@ More brainstorming:
 ## Code Outside Class
 
 - Utilized the input validation from the previous applied project, with some modification
+
+## Future ideas:
+
+- User might want to customize the size of the dungeon
+- User may want to see the dungeons actually laid out in the grid in accordance with their linking

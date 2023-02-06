@@ -72,9 +72,6 @@ public:
     void setWestRoom(DungeonRoom *westRoom);
 
     // Unique methods
-    // TODO: use values from struct
-    // TODO: move to .cpp
-    // TODO: depending on nullptrs, add "hallway" characters.
 
     // This method uses characters from the render info struct to generate a string
     // that represents the ascii visual of this room.
