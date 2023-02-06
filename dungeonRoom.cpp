@@ -4,6 +4,10 @@
 
 #include "dungeonRoom.h"
 
+DungeonRoom::DungeonRoom() {
+
+}
+
 string DungeonRoom::getName() {
     return name;
 }

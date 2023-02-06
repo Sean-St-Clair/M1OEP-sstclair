@@ -106,3 +106,7 @@ More brainstorming:
 - Rather than room size maybe we should just specify the dungeon coordinates. And then maybe size = small, medium
   large... Hmmm. We need to define the actual input loop more clearly. Room size with specific categories like that
   would make sense for an enum.
+
+## Code Outside Class
+
+- Utilized the input validation from the previous applied project, with some modification

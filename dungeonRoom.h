@@ -14,6 +14,10 @@ enum dungeonRoomSize {
     SMALL, MEDIUM, LARGE
 };
 
+enum direction {
+    NORTH, EAST, SOUTH, WEST
+};
+
 class DungeonRoom {
 private:
     string name;
@@ -60,12 +64,19 @@ public:
 
     // Unique methods
     // TODO: use values from struct
+    // TODO: move to .cpp
+    // TODO: depending on nullptrs, add "hallway" characters.
+
+    // This method uses characters from the render info struct to generate a string
+    // that represents the ascii visual of this room.
     string generateRoomVisuals() {
-        string defaultRoom = "----------"
-                             "\n|        |"
-                             "\n|        |"
-                             "\n|        |"
-                             "\n----------";
+        string defaultRoom = "--------------"
+                             "\n|            |"
+                             "\n|            |"
+                             "\n|            |"
+                             "\n|            |"
+                             "\n|            |"
+                             "\n--------------";
         return defaultRoom;
     }
 
