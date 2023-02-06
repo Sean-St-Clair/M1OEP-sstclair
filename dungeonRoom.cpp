@@ -4,12 +4,12 @@
 
 #include "dungeonRoom.h"
 
-int DungeonRoom::getRoomWidth() {
-    return roomWidth;
+string DungeonRoom::getName() {
+    return name;
 }
 
-int DungeonRoom::getRoomHeight() {
-    return roomHeight;
+dungeonRoomSize DungeonRoom::getRoomSize() {
+    return roomSize;
 }
 
 DungeonRoom *DungeonRoom::getNorthRoom() {
@@ -28,27 +28,26 @@ DungeonRoom *DungeonRoom::getWestRoom() {
     return westRoom;
 }
 
-void DungeonRoom::setRoomWidth(int roomWidth) {
-    this->roomWidth = roomWidth;
+void DungeonRoom::setName(std::string name) {
+    this->name = name;
 }
 
-void DungeonRoom::setRoomHeight(int roomHeight) {
-    this->roomHeight = roomHeight;
+void DungeonRoom::setRoomSize(dungeonRoomSize roomSize) {
+    this->roomSize = roomSize;
 }
 
-// TODO: Make sure the pointer syntax is actually correct
-void DungeonRoom::setNorthRoom(DungeonRoom &northRoom) {
-    this->northRoom = &northRoom;
+void DungeonRoom::setNorthRoom(DungeonRoom *northRoom) {
+    this->northRoom = northRoom;
 }
 
-void DungeonRoom::setEastRoom(DungeonRoom &eastRoom) {
-    this->eastRoom = &eastRoom;
+void DungeonRoom::setEastRoom(DungeonRoom *eastRoom) {
+    this->eastRoom = eastRoom;
 }
 
-void DungeonRoom::setSouthRoom(DungeonRoom &southRoom) {
-    this->southRoom = &southRoom;
+void DungeonRoom::setSouthRoom(DungeonRoom *southRoom) {
+    this->southRoom = southRoom;
 }
 
-void DungeonRoom::setWestRoom(DungeonRoom &westRoom) {
-    this->westRoom = &westRoom;
+void DungeonRoom::setWestRoom(DungeonRoom *westRoom) {
+    this->westRoom = westRoom;
 }

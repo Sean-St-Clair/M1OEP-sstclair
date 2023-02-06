@@ -4,42 +4,31 @@
 
 using namespace std;
 
-/*
- * Prompts the user for input to create a room and specify its dimensions
- */
+// TODO: input validation once we are more sure of the structure of the program / input scheme
+// TODO: restrict the room dimensions to fall within a maximum cell size on grid space
+// TODO: add meaningful comments
+
+// Prompts the user for input to create a room and specify its dimensions
 void createRoom();
 
-/*
- * Takes the given dungeon and returns a copy of it (having the same fields but its own space in memory)
- */
+// Takes the given dungeon and returns a copy of it (having the same fields but its own space in memory)
 DungeonRoom copyRoom();
 
-/*
- * "Links" the two rooms by placing room2 next to room1 in accordance with the given direction
- */
-void linkRooms(DungeonRoom &room1, DungeonRoom &room2, int direction);
-
-/*
- * Takes a string and returns a vector of substrings split by the given delimiter
- */
+// Takes a string and returns a vector of substrings split by the given delimiter
 vector<string> splitString(string input, char delimiter);
 
-/*
- * Prints an ascii visual of the created dungeon.
- */
+// Prints an ascii visual of the created dungeon.
 void printDungeon();
 
 // Testing some basic functionality without yet doing input validation
-// TODO: input validation once we are more sure of the structure of the program / input scheme
-// TODO: restrict the room dimensions to fall within a maximum cell size on grid space
 int main() {
     cout << "Welcome to Dungeon Builder! ";
 
     string prompt = "What would you like to do?"
                     "\n[1] - Create new room"
-                    "\n[2] - Copy existing room"
                     "\n[3] - Link two rooms together"
-                    "\n[4] - Quit";
+                    "\n[4] - Display dungeon"
+                    "\n[5] - Quit";
     int response = 0;
     int numRooms = 0;
     while (response != 4) {
@@ -118,27 +107,27 @@ vector<string> splitString(string input, char delimiter) {
 
 void printDungeon() {
     // A default room for testing
-    string defaultRoom = "----------"
-                         "\n|        |"
-                         "\n|        |"
-                         "\n|        |"
-                         "\n----------";
+    string defaultRoom = "--------------"
+                         "\n|            |"
+                         "\n|            |"
+                         "\n|            |"
+                         "\n|            |"
+                         "\n|            |"
+                         "\n--------------";
     // Split the room string by its newline characters in order to print several side-by-side.
     vector<string> split = splitString(defaultRoom, '\n');
+//    char emptySpace = ' ';
 
     // Testing variables - will likely be user-specified
-    int dungeonWidth = 5;
-    int dungeonHeight = 3;
+    int dungeonWidth = 6;
+    int dungeonHeight = 4;
     // Print several rows of rooms on top of each other
     for (int i = 0; i < dungeonHeight; i++) {
         // Print several rooms next to each other in a single row
-        for (int e = 0; e < split.size() - 1; e++) {
+        for (int e = 0; e < split.size(); e++) {
             for (int w = 0; w < dungeonWidth; w++)
-                cout << split[e];
+                cout << split[e] << " ";
             cout << endl;
         }
-        if (i == dungeonHeight - 1)
-            for (int w = 0; w < dungeonWidth; w++)
-                cout << split[split.size() - 1];
     }
 }
